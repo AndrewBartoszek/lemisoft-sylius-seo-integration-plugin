@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lemisoft\BoilerplatePlugin\Controller;
+namespace Lemisoft\SyliusSeoIntegrationPlugin\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ final class GreetingController extends AbstractController
     public function staticallyGreetAction(?string $name): Response
     {
         return $this->render(
-            '@LemisoftBoilerplatePlugin/static_greeting.html.twig',
+            '@LemisoftSyliusSeoIntegrationPlugin/static_greeting.html.twig',
             ['greeting' => $this->getGreeting($name)],
         );
     }
@@ -20,7 +20,7 @@ final class GreetingController extends AbstractController
     public function dynamicallyGreetAction(?string $name): Response
     {
         return $this->render(
-            '@LemisoftBoilerplatePlugin/dynamic_greeting.html.twig',
+            '@LemisoftSyliusSeoIntegrationPlugin/dynamic_greeting.html.twig',
             ['greeting' => $this->getGreeting($name)],
         );
     }

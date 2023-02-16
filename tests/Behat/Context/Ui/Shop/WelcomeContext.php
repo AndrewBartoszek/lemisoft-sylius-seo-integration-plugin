@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lemisoft\Tests\BoilerplatePlugin\Behat\Context\Ui\Shop;
+namespace Lemisoft\Tests\SyliusSeoIntegrationPlugin\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
-use Lemisoft\Tests\BoilerplatePlugin\Behat\Page\Shop\WelcomePageInterface;
+use Lemisoft\Tests\SyliusSeoIntegrationPlugin\Behat\Page\Shop\WelcomePageInterface;
 use Webmozart\Assert\Assert;
 
 final class WelcomeContext implements Context

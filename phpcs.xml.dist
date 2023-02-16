@@ -200,8 +200,8 @@
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
             <property name="rootNamespaces" type="array">
-                <element key="src" value="Lemisoft\BoilerplatePlugin"/>
-                <element key="tests" value="Lemisoft\Tests\BoilerplatePlugin"/>
+                <element key="src" value="Lemisoft\SyliusSeoIntegrationPlugin"/>
+                <element key="tests" value="Lemisoft\Tests\SyliusSeoIntegrationPlugin"/>
             </property>
         </properties>
     </rule>

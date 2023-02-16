@@ -1,7 +1,7 @@
 {
-    "name": "lemisoft/plugin-boilerplate",
+    "name": "lemisoft/sylius-seo-integration-plugin",
     "type": "sylius-plugin",
-    "description": "Boilerplate plugin for Sylius.",
+    "description": "Plugin add seo script management",
     "keywords": [
         "sylius",
         "sylius-plugin"
@@ -61,12 +61,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Lemisoft\\BoilerplatePlugin\\": "src/"
+            "Lemisoft\\SyliusSeoIntegrationPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lemisoft\\Tests\\BoilerplatePlugin\\": "tests/"
+            "Lemisoft\\Tests\\SyliusSeoIntegrationPlugin\\": "tests/"
         },
         "classmap": [
             "tests/Application/Kernel.php"
