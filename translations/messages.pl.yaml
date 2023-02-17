@@ -1,0 +1,13 @@
+lemisoft_sylius_seo_integration_plugin:
+    ui:
+        seo_integrations: Integracje Seo
+        manage_seo_integration: Zarządzanie integracjami Seo
+        new_seo_integration: Dodaj integracje seo
+        edit_seo_integration: Edytuj integracje Seo
+    menu:
+        seo_integration: Integracje Seo
+    form:
+        seo_type:
+            facebook: Facebook
+            google_analytics: Google analytics
+            facebook_pixel: Facebook pixel

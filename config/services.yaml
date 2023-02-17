@@ -1,0 +1,41 @@
+parameters:
+    baselinker_api_url: '%env(BASELINKER_API_URL)%'
+
+imports:
+    - { resource: 'services/sylius_resource.yaml' }
+    - { resource: 'services/form_type.yaml' }
+    - { resource: 'services/events.yaml' }
+    - { resource: 'services/seo_integration_type.yaml' }
+    - { resource: 'services/sylius_grid.yaml' }
+    - { resource: 'services/controller.yaml' }
+
+services:
+    lemisoft.sylius_seo_integration_plugin.cache.adapter.filesystem:
+        parent: 'cache.adapter.filesystem'
+        tags:
+            - { name: 'cache.pool', namespace: 'lemisoft.sylius_seo_integration_plugin.cache_filesystem' }
+
+    lemisoft.sylius_seo_integration_plugin.event_listener.menu_builder_listener:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\EventListener\MenuBuilderListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+
+    lemisoft.sylius_seo_integration_plugin.service.seo_integration.factory_seo_integration_factory:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Factory\SeoIntegrationFactory
+        decorates: 'lemisoft_sylius_seo_integration_plugin.factory.seo_integration'
+        arguments:
+            - '%lemisoft_sylius_seo_integration_plugin.model.seo_integration.class%'
+            - '@lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type'
+
+    lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_service:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\SeoIntegrationService
+        arguments:
+            - '@lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type'
+            - '@lemisoft_sylius_seo_integration_plugin.repository.seo_integration'
+            - '@lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_cache_service'
+
+    lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_cache_service:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\SeoIntegrationCacheService
+        arguments:
+            - '@lemisoft.sylius_seo_integration_plugin.cache.adapter.filesystem'
+            - 60

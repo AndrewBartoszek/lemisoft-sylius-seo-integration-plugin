@@ -1,0 +1,17 @@
+sylius_ui:
+    events:
+        sylius.shop.layout.head:
+            blocks:
+                lemisoft_sylius_seo_integration_plugin_head_seo_integration:
+                    template: '@LemisoftSyliusSeoIntegrationPlugin/Shop/_head_seo_integration.html.twig'
+                    priority: 1
+        sylius.shop.layout.before_body:
+            blocks:
+                lemisoft_sylius_seo_integration_plugin_body_before_body_seo_integration:
+                    template: '@LemisoftSyliusSeoIntegrationPlugin/Shop/_body_before_body_seo_integration.html.twig'
+                    priority: 2
+        sylius.shop.layout.after_content:
+            blocks:
+                lemisoft_sylius_seo_integration_plugin_body_after_body_seo_integration:
+                    template: '@LemisoftSyliusSeoIntegrationPlugin/Shop/_body_after_body_seo_integration.html.twig'
+                    priority: 3

@@ -1,0 +1,10 @@
+{% if integration and integration.configuration is defined and integration.configuration.0 is defined and integration.configuration.0.code is defined %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ integration.configuration.0.code }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ integration.configuration.0.code }}');
+</script>
+{% endif %}

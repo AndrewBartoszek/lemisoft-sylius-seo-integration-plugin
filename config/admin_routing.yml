@@ -1,1 +1,52 @@
 # Define your own admin routes here
+
+#sylius_admin_product_attribute:
+#        grid: sylius_admin_product_attribute
+#        alias: sylius.product_attribute
+lemisoft_admin_seo_integration:
+    resource: |
+        alias: lemisoft_sylius_seo_integration_plugin.seo_integration
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        except: ['show', 'create']
+        redirect: update
+        grid: lemisoft_seo_integration_admin_seo_integration
+        permission: true
+        vars:
+            all:
+                subheader: lemisoft_sylius_seo_integration_plugin.ui.manage_seo_integration
+                templates:
+                    form: "@LemisoftSyliusSeoIntegrationPlugin/Admin/SeoIntegration/_form.html.twig"
+            index:
+                icon: magnify
+    type: sylius.resource
+
+lemisoft_sylius_seo_integration_plugin_admin_seo_integration_create:
+    path: /seo-integrations/{type}/new
+    methods: [GET, POST]
+    defaults:
+        _controller: lemisoft_sylius_seo_integration_plugin.controller.seo_integration::createAction
+        _sylius:
+            section: admin
+            factory:
+                method: createTyped
+                arguments:
+                    type: $type
+            template: "@SyliusAdmin/Crud/create.html.twig"
+            redirect: lemisoft_sylius_seo_integration_plugin_admin_seo_integration_update
+            permission: true
+            vars:
+                subheader: lemisoft_sylius_seo_integration_plugin.ui.manage_seo_integration
+                templates:
+
+                    form: "@LemisoftSyliusSeoIntegrationPlugin/Admin/SeoIntegration/_form.html.twig"
+                route:
+                    parameters:
+                        type: $type
+
+lemisoft_sylius_seo_integration_plugin_admin_get_seo_integration_types:
+    path: /seo-integration-types
+    methods: [GET]
+    defaults:
+        _controller: lemisoft_sylius_seo_integration_plugin.controller.seo_integration::getSeoIntegrationTypesAction
+        template: "@LemisoftSyliusSeoIntegrationPlugin/Admin/SeoIntegration/Types/seo_integration_types.html.twig"

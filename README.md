@@ -17,8 +17,92 @@ Dla php należy włączyć następujące rozszerzenia:
 5. Najlepiej używać plików konfiguracyjnych w formacie **.php**
 6. Publikacja wtyczki oraz używanie semantic version
 
-## Uruchomienie wtyczki
+## Instalacja pluginu
+1. W pliku config/bundles.php dodać:
+    ```bash
+    Lemisoft\SyliusSeoIntegrationPlugin\LemisoftSyliusSeoIntegrationPlugin::class => ['all' => true],
+    ```
 
+2. W pliku config/services.yaml dodać import:
+    ```bash
+    imports:
+        - { resource: "@LemisoftSyliusSeoIntegrationPlugin/config/services.yaml" }
+    ```
+
+3. W pliku config/routes.yaml dodać import:
+    ```bash
+    lemisoft_sylius_seo_integration_plugin_shop:
+        resource: "@LemisoftSyliusSeoIntegrationPlugin/config/shop_routing.yml"
+        prefix: /{_locale}
+        requirements:
+            _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
+
+    lemisoft_sylius_seo_integration_plugin_admin:
+        resource: "@LemisoftSyliusSeoIntegrationPlugin/config/admin_routing.yml"
+        prefix: /admin
+    ```
+
+4. Tworzymy plik:
+    ```bash
+    #src/Entity/Seo/SeoIntegration.php
+
+    declare(strict_types=1);
+
+    namespace App\Entity\Seo;
+
+    use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegration as BaseSeoIntegration;
+
+    class SeoIntegration extends BaseSeoIntegration
+    {
+
+    }
+    ```
+## Rozszerzenie o nową integrację
+Na przykładzie skryptu Google Analytics
+
+Dodanie pliku z typem integracji:
+```bash
+    #Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\GoogleAnalyticsSeoIntegrationType
+```
+
+Dodanie typu integracji:
+```bash
+#config/services/seo_integration_type.yaml
+    lemisoft.sylius_seo_integration_plugin.type.google_analytics:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\GoogleAnalyticsSeoIntegrationType
+        tags:
+            { name: 'google_analytics' }
+```
+
+Rejestracja typu integracji:
+```bash
+#config/services/seo_integration_type.yaml
+    lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type:
+        class: Sylius\Component\Registry\ServiceRegistry
+        public: true
+        arguments:
+            - 'Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\SeoIntegrationTypeInterface'
+            - 'seo integration'
+        calls:
+            -   register: [ 'facebook', '@lemisoft.sylius_seo_integration_plugin.type.facebook' ]
+            -   register: [ 'google_analytics', '@lemisoft.sylius_seo_integration_plugin.type.google_analytics' ] #tylko ten wiersz dodajemy
+```
+
+Dodanie szablonu z kodem skryptu integracji:
+```bash
+#templates/Shop/SeoIntegration/google_analytics.html.twig
+```
+
+Dodanie tłumaczenia pojawiajacego sie w menu rozwijanym przy tworzeniu nowej integracji:
+```bash
+#translations/messages.pl.yaml
+lemisoft_sylius_seo_integration_plugin:
+    form:
+        seo_type:
+            google_analytics: Google analytics
+```
+
+## Uruchomienie wtyczki
 Wtyczka uruchamiana jest przy użyciu Docker.
 Po sklonowaniu projektu należy zmienić nazewnictwo klas oraz plików konfiguracyjnych zgodnie z [dokumentacją](https://docs.sylius.com/en/latest/book/plugins/guide/naming.html).
 

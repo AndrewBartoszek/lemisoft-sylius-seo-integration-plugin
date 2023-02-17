@@ -1,0 +1,10 @@
+sylius_resource:
+    resources:
+        lemisoft_sylius_seo_integration_plugin.seo_integration:
+            driver: doctrine/orm
+            classes:
+                model: Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegration
+                controller: Lemisoft\SyliusSeoIntegrationPlugin\Controller\Admin\SeoIntegrationController
+                form: Lemisoft\SyliusSeoIntegrationPlugin\Form\SeoIntegrationType
+
+

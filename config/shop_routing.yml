@@ -1,0 +1,6 @@
+lemisoft_sylius_seo_integration_plugin_shop_get_seo_integration_script:
+    path: /seo-integration/{place}/get
+    methods: [ GET ]
+    defaults:
+        _controller: lemisoft.sylius_seo_integration_plugin.controller.shop.seo_integration_controller::getSeoIntegrationScriptAction
+        template: "@LemisoftSyliusSeoIntegrationPlugin/Shop/seo_scripts.html.twig"

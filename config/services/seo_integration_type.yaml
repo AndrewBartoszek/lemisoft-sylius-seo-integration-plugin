@@ -1,0 +1,31 @@
+services:
+    lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type:
+        class: Sylius\Component\Registry\ServiceRegistry
+        public: true
+        arguments:
+            - 'Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\SeoIntegrationTypeInterface'
+            - 'seo integration'
+        calls:
+            -   register: [ 'facebook', '@lemisoft.sylius_seo_integration_plugin.type.facebook' ]
+            -   register: [ 'google_analytics', '@lemisoft.sylius_seo_integration_plugin.type.google_analytics' ]
+            -   register: [ 'facebook_pixel', '@lemisoft.sylius_seo_integration_plugin.type.facebook_pixel' ]
+
+    lemisoft.sylius_seo_integration_plugin.type.facebook:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\FacebookSeoIntegrationType
+        tags:
+          { name: 'facebook' }
+
+    lemisoft.sylius_seo_integration_plugin.type.google_analytics:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\GoogleAnalyticsSeoIntegrationType
+        tags:
+          { name: 'google_analytics' }
+
+    lemisoft.sylius_seo_integration_plugin.type.facebook_pixel:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\FacebookPixelSeoIntegrationType
+        tags:
+          { name: 'facebook_pixel' }
+
+    lemisoft.sylius_seo_integration_plugin.form.registry.form_type_registry:
+        class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
+        calls:
+            -   add: [ 'default', 'default', 'Lemisoft\SyliusSeoIntegrationPlugin\Form\SeoIntegrationType\DefaultType' ]
