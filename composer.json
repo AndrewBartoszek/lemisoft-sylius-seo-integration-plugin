@@ -14,7 +14,8 @@
         "sylius/sylius": "^1.12",
         "sylius/mailer-bundle":  "^2.0",
         "symfony/webpack-encore-bundle": "^1.15",
-        "myclabs/php-enum": "^1.8"
+        "myclabs/php-enum": "^1.8",
+        "symfony/cache": "^6.2"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
