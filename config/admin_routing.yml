@@ -50,3 +50,10 @@ lemisoft_sylius_seo_integration_plugin_admin_get_seo_integration_types:
     defaults:
         _controller: lemisoft_sylius_seo_integration_plugin.controller.seo_integration::getSeoIntegrationTypesAction
         template: "@LemisoftSyliusSeoIntegrationPlugin/Admin/SeoIntegration/Types/seo_integration_types.html.twig"
+
+lemisoft_sylius_seo_integration_plugin_admin_get_seo_integration_script:
+    path: /seo-integration/get-script/{type}
+    methods: [GET]
+    defaults:
+        _controller: lemisoft.sylius_seo_integration_plugin.controller.admin.seo_integration_controller::getSeoIntegrationScriptCodeAction
+        template: '@LemisoftSyliusSeoIntegrationPlugin/Admin/SeoIntegration/_script.html.twig'

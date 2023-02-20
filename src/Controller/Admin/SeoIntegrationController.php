@@ -4,19 +4,35 @@ declare(strict_types=1);
 
 namespace Lemisoft\SyliusSeoIntegrationPlugin\Controller\Admin;
 
-use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\SeoIntegrationService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SeoIntegrationController extends ResourceController
+class SeoIntegrationController extends AbstractController
 {
-    public function getSeoIntegrationTypesAction(Request $request, string $template): Response
+    public SeoIntegrationService $seoIntegrationService;
+
+    public function __construct(SeoIntegrationService $seoIntegrationService)
     {
-        return $this->render(
-            $template,
+        $this->seoIntegrationService = $seoIntegrationService;
+    }
+
+    public function getSeoIntegrationScriptCodeAction(Request $request, $type): Response
+    {
+        $seoIntegrationType = $this->seoIntegrationService->findRegisterType($type);
+
+        $script = $this->renderView(
+            $seoIntegrationType->getTemplate(),
             [
-                'types' => $this->get('lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type')->all(),
-                'metadata' => $this->metadata,
+                'isForAdminEditView' => true,
+            ],
+        );
+
+        return $this->render(
+            $request->get('template'),
+            [
+                'script' => $script,
             ],
         );
     }

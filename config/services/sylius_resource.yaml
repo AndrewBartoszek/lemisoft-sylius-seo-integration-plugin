@@ -4,7 +4,7 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegration
-                controller: Lemisoft\SyliusSeoIntegrationPlugin\Controller\Admin\SeoIntegrationController
+                controller: Lemisoft\SyliusSeoIntegrationPlugin\Controller\Admin\SeoIntegrationResourceController
                 form: Lemisoft\SyliusSeoIntegrationPlugin\Form\SeoIntegrationType
 
 

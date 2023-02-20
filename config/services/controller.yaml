@@ -9,3 +9,10 @@ services:
             - '@lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_service'
         tags:
             - { name: controller.service_arguments }
+
+    lemisoft.sylius_seo_integration_plugin.controller.admin.seo_integration_controller:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\Controller\Admin\SeoIntegrationController
+        arguments:
+            - '@lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_service'
+        tags:
+            - { name: controller.service_arguments }

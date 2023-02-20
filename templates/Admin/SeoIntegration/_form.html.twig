@@ -5,4 +5,15 @@
         {{ form_row(form.name) }}
         {{ form_row(form.configuration) }}
     </div>
+
+    {% if form.vars.data is defined and form.vars.data and form.vars.data.type %}
+        <div class="ui segment">
+            <h4 class="ui dividing header">{{ 'lemisoft_sylius_seo_integration_plugin.ui.edit.configuration_show_section'|trans }}</h4>
+            <pre>
+                <code>
+                {{ render(path('lemisoft_sylius_seo_integration_plugin_admin_get_seo_integration_script', {type: form.vars.data.type})) }}
+                </code>
+            </pre>
+        </div>
+    {% endif %}
 </div>

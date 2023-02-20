@@ -24,7 +24,7 @@ class SeoIntegrationConfigurationDefaultType extends AbstractType
     {
         $builder
             ->add('code', TextType::class, [
-                'label'       => '',
+                'label'       => 'lemisoft_sylius_seo_integration_plugin.form.configuration.code',
                 'constraints' => [
                     new NotBlank(),
                 ],

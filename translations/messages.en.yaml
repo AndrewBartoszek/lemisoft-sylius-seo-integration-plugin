@@ -4,9 +4,13 @@ lemisoft_sylius_seo_integration_plugin:
         manage_seo_integration: Manage Seo integrations
         new_seo_integration: Add Seo integration
         edit_seo_integration: Edit Seo integration
+        edit:
+            configuration_show_section: Schematic of the generated code
     menu:
         seo_integration: Seo integrations
     form:
+        configuration:
+            code: Code
         seo_type:
             facebook: Facebook
             google_analytics: Google analytics

@@ -1,10 +1,18 @@
-{% if integration and integration.configuration is defined and integration.configuration.0 is defined and integration.configuration.0.code is defined %}
+{% if
+    isForAdminEditView is defined or
+    integration is defined and integration.configuration is defined and integration.configuration.0 is defined and integration.configuration.0.code is defined
+%}
+    {% if isForAdminEditView is defined %}
+        {% set code = '{'~('lemisoft_sylius_seo_integration_plugin.form.configuration.code'|trans)~'}' %}
+    {% else %}
+        {% set code = integration.configuration.0.code %}
+    {% endif%}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ integration.configuration.0.code }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ code }}"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '{{ integration.configuration.0.code }}');
+    gtag('config', '{{ code }}');
 </script>
 {% endif %}
