@@ -1,0 +1,3 @@
+{% if integration and integration.configuration is defined and integration.configuration.0 is defined and integration.configuration.0.code is defined %}
+    <meta name="google-site-verification" content="{{ integration.configuration.0.code }}" />
+{% endif %}

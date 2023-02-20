@@ -70,8 +70,6 @@ Dodanie typu integracji:
 #config/services/seo_integration_type.yaml
     lemisoft.sylius_seo_integration_plugin.type.google_analytics:
         class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\GoogleAnalyticsSeoIntegrationType
-        tags:
-            { name: 'google_analytics' }
 ```
 
 Rejestracja typu integracji:

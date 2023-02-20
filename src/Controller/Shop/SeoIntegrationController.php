@@ -31,7 +31,7 @@ class SeoIntegrationController extends AbstractController
 
         $scripts = [];
         foreach ($integrations as $integration) {
-            $seoIntegrationType = $this->seoIntegrationService->findRegisterType($integration);
+            $seoIntegrationType = $this->seoIntegrationService->findRegisterType($integration->getType());
             $scripts[] = $this->renderView(
                 $seoIntegrationType->getTemplate(),
                 ['integration' => $integration]

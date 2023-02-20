@@ -38,4 +38,4 @@ services:
         class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\SeoIntegrationCacheService
         arguments:
             - '@lemisoft.sylius_seo_integration_plugin.cache.adapter.filesystem'
-            - 60
+            - 30

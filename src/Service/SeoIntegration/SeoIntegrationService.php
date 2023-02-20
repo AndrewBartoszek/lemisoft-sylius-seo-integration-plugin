@@ -62,13 +62,13 @@ class SeoIntegrationService
         return $foundIntegrations;
     }
 
-    public function findRegisterType(SeoIntegrationInterface $seoIntegration): ?SeoIntegrationTypeInterface
+    public function findRegisterType(string $seoIntegrationType): ?SeoIntegrationTypeInterface
     {
         /** @var SeoIntegrationTypeInterface[] $types */
         $types = $this->seoIntegrationTypeRegistry->all();
 
         foreach ($types as $registerType) {
-            if ($registerType->getType() == $seoIntegration->getType()) {
+            if ($registerType->getType() == $seoIntegrationType) {
                 return $registerType;
             }
         }

@@ -7,4 +7,6 @@ interface SeoIntegrationTypeInterface
     public function getType(): string;
 
     public function getTemplate(): string;
+
+    public function getConfigurationFormClass(): string;
 }
