@@ -12,19 +12,16 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class SeoIntegrationService
 {
-    public ServiceRegistry $seoIntegrationTypeRegistry;
-    public RepositoryInterface $repository;
-    public SeoIntegrationCacheService $seoCache;
-
-
     public function __construct(
-        ServiceRegistry $seoIntegrationTypeRegistry,
-        RepositoryInterface $repository,
-        SeoIntegrationCacheService $seoCache
+        protected ServiceRegistry $seoIntegrationTypeRegistry,
+        protected RepositoryInterface $repository,
+        protected SeoIntegrationCacheService $seoCache
     ) {
-        $this->seoIntegrationTypeRegistry = $seoIntegrationTypeRegistry;
-        $this->repository = $repository;
-        $this->seoCache = $seoCache;
+    }
+
+    public function deleteSeoCache(): void
+    {
+        $this->seoCache->deleteSeoIntegrationCache();
     }
 
     /**
@@ -45,8 +42,6 @@ class SeoIntegrationService
     }
 
     /**
-     * @param string $place
-     *
      * @return SeoIntegrationInterface[]
      */
     public function findIntegrations(string $place): array

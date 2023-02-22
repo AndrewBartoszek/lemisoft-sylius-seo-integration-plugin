@@ -6,22 +6,17 @@ namespace Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration;
 
 use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegrationInterface;
 use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class SeoIntegrationCacheService
 {
     const SEO_INTEGRATIONS_NAME = 'seo_integrations';
 
-    public CacheInterface $cache;
-    /** @var int W sekundach */
-    public int $expirationAfter;
-
-    public function __construct(CacheInterface $cache, int $expirationAfter)
+    public function __construct(protected CacheInterface $cache)
     {
-        $this->cache = $cache;
-        $this->expirationAfter = $expirationAfter;
     }
 
-    public function getSeoIntegrations()
+    public function getSeoIntegrations(): ItemInterface
     {
         return $this->cache->getItem(
             self::SEO_INTEGRATIONS_NAME
@@ -30,15 +25,17 @@ class SeoIntegrationCacheService
 
     /**
      * @param SeoIntegrationInterface[] $seoIntegrations
-     *
-     * @return void
      */
-    public function setSeoIntegrations(array $seoIntegrations)
+    public function setSeoIntegrations(array $seoIntegrations):void
     {
         $cacheItem = $this->getSeoIntegrations();
         $cacheItem->set($seoIntegrations);
-        $cacheItem->expiresAfter($this->expirationAfter);
 
         $this->cache->save($cacheItem);
+    }
+
+    public function deleteSeoIntegrationCache(): void
+    {
+        $this->cache->delete(self::SEO_INTEGRATIONS_NAME);
     }
 }

@@ -8,10 +8,7 @@ use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 class MenuBuilderListener
 {
-    /**
-     * @param MenuBuilderEvent $event
-     */
-    public function addAdminMenuItems(MenuBuilderEvent $event)
+    public function addAdminMenuItems(MenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
         $configuration = $menu->getChild('configuration');

@@ -38,4 +38,12 @@ services:
         class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\SeoIntegrationCacheService
         arguments:
             - '@lemisoft.sylius_seo_integration_plugin.cache.adapter.filesystem'
-            - 30
+
+    lemisoft.sylius_seo_integration_plugin.event_listener.seo_integration_listener:
+        class: Lemisoft\SyliusSeoIntegrationPlugin\EventListener\SeoIntegrationListener
+        arguments:
+            - '@lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_service'
+        tags:
+            - { name: kernel.event_listener, event: lemisoft_sylius_seo_integration_plugin.seo_integration.post_update, method: refreshSeoIntegrationCache }
+            - { name: kernel.event_listener, event: lemisoft_sylius_seo_integration_plugin.seo_integration.post_delete, method: refreshSeoIntegrationCache }
+            - { name: kernel.event_listener, event: lemisoft_sylius_seo_integration_plugin.seo_integration.post_create, method: refreshSeoIntegrationCache }
