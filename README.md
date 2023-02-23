@@ -165,12 +165,18 @@ W projekcie zostały zdefiniowane następujące kontenery:
 
 Aby uruchomić projekt, należy:
 
-1. Uruchomić kontenery
+1. Podczas pierwszego uruchomienia należy się zalogować w naszym gitlab:
+
+    ```bash
+   docker login gitlab.lemisoft.pl:5050
+    ```
+
+2. Uruchomić kontenery
     ```bash
     docker compose up -d
     ```
 
-2. Inicjalizacja wtyczki
+3. Inicjalizacja wtyczki
     ```bash
    docker compose exec app make init
     ```
