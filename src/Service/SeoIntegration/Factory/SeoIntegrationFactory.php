@@ -13,7 +13,7 @@ class SeoIntegrationFactory implements SeoIntegrationFactoryInterface
     /**
      * @psalm-var class-string
      *
-     * @template T of object
+     * @template SeoIntegration
      */
     private string $className;
 
