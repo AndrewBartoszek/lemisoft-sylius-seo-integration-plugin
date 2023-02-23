@@ -8,15 +8,10 @@ use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrat
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Sylius\Component\Core\Model\CustomerInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\CallbackTransformer;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SeoIntegrationConfigurationDefaultType extends AbstractType
 {
@@ -35,7 +30,8 @@ class SeoIntegrationConfigurationDefaultType extends AbstractType
                     new NotBlank(),
                 ],
             ])
-            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            ->addEventListener(FormEvents::PRE_SUBMIT, static function (FormEvent $event): void {
+                /** @var array $data */
                 $data = $event->getData();
                 $data['place'] = SeoIntegrationRenderType::HEAD;
 

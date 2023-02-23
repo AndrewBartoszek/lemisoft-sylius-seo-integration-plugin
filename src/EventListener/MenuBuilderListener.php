@@ -12,9 +12,11 @@ class MenuBuilderListener
     {
         $menu = $event->getMenu();
         $configuration = $menu->getChild('configuration');
-
-        $configuration->addChild('seo_integration', ['route' => 'lemisoft_sylius_seo_integration_plugin_admin_seo_integration_index'])
-            ->setLabel('lemisoft_sylius_seo_integration_plugin.menu.seo_integration')
-            ->setLabelAttribute('icon', 'magnify');
+        if (null !== $configuration) {
+            $configuration
+                ->addChild('seo_integration', ['route' => 'lemisoft_sylius_seo_integration_plugin_admin_seo_integration_index'])
+                ->setLabel('lemisoft_sylius_seo_integration_plugin.menu.seo_integration')
+                ->setLabelAttribute('icon', 'magnify');
+        }
     }
 }

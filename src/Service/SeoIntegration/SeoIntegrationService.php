@@ -8,14 +8,13 @@ use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegrationInterface;
 use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\SeoIntegrationTypeInterface;
 use Sylius\Component\Registry\ServiceRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Symfony\Contracts\Cache\CacheInterface;
 
 class SeoIntegrationService
 {
     public function __construct(
         protected ServiceRegistry $seoIntegrationTypeRegistry,
         protected RepositoryInterface $repository,
-        protected SeoIntegrationCacheService $seoCache
+        protected SeoIntegrationCacheService $seoCache,
     ) {
     }
 
@@ -32,9 +31,11 @@ class SeoIntegrationService
         $cachedSeoIntegrations = $this->seoCache->getSeoIntegrations();
 
         if (!$cachedSeoIntegrations->isHit()) {
+            /** @var SeoIntegrationInterface[] $integrations */
             $integrations = $this->repository->findAll();
             $this->seoCache->setSeoIntegrations($integrations);
         } else {
+            /** @var SeoIntegrationInterface[] $integrations */
             $integrations = $cachedSeoIntegrations->get();
         }
 
@@ -49,7 +50,7 @@ class SeoIntegrationService
         $foundIntegrations = [];
         $allIntegrations = $this->getAllIntegrations();
         foreach ($allIntegrations as $integration) {
-            if ($integration->getFirstPlace() == $place){
+            if ($integration->getFirstPlace() === $place) {
                 $foundIntegrations[] = $integration;
             }
         }
@@ -57,13 +58,17 @@ class SeoIntegrationService
         return $foundIntegrations;
     }
 
-    public function findRegisterType(string $seoIntegrationType): ?SeoIntegrationTypeInterface
+    public function findRegisterType(?string $seoIntegrationType = null): ?SeoIntegrationTypeInterface
     {
+        if (null === $seoIntegrationType) {
+            return null;
+        }
+
         /** @var SeoIntegrationTypeInterface[] $types */
         $types = $this->seoIntegrationTypeRegistry->all();
 
         foreach ($types as $registerType) {
-            if ($registerType->getType() == $seoIntegrationType) {
+            if ($registerType->getType() === $seoIntegrationType) {
                 return $registerType;
             }
         }

@@ -57,6 +57,28 @@ Dla php należy włączyć następujące rozszerzenia:
 
     }
     ```
+   Migracje:
+   ```bash
+    final class Version20230217070532 extends AbstractMigration
+    {
+        public function getDescription(): string
+        {
+            return '';
+        }
+
+        public function up(Schema $schema): void
+        {
+            // this up() migration is auto-generated, please modify it to your needs
+            $this->addSql('CREATE TABLE lemisoft_seo_integration (id INT AUTO_INCREMENT NOT NULL, type VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, configuration JSON NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        }
+
+        public function down(Schema $schema): void
+        {
+            // this down() migration is auto-generated, please modify it to your needs
+            $this->addSql('DROP TABLE lemisoft_seo_integration');
+        }
+    }
+    ```
 ## Rozszerzenie o nową integrację
 Na przykładzie skryptu Google Analytics
 

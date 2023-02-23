@@ -12,7 +12,7 @@ class SeoIntegrationListener
     {
     }
 
-    function refreshSeoIntegrationCache(): void
+    public function refreshSeoIntegrationCache(): void
     {
         $this->seoIntegrationService->deleteSeoCache();
         $this->seoIntegrationService->getAllIntegrations();

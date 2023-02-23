@@ -6,9 +6,12 @@ namespace Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model;
 
 use MyCLabs\Enum\Enum;
 
+/**
+ * @psalm-immutable
+ */
 class SeoIntegrationRenderType extends Enum
 {
-    const HEAD = 'head';
-    const BODY_BEFORE_BODY = 'body-before-body';
-    const BODY_AFTER_BODY = 'body-after-body';
+    public const HEAD = 'head';
+    public const BODY_BEFORE_BODY = 'body-before-body';
+    public const BODY_AFTER_BODY = 'body-after-body';
 }
