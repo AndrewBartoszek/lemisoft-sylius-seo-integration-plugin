@@ -7,6 +7,9 @@ namespace Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Factory;
 use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegrationInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
+/**
+ * @psalm-suppress MissingTemplateParam
+ */
 interface SeoIntegrationFactoryInterface extends FactoryInterface
 {
     public function createTyped(string $type): SeoIntegrationInterface;
