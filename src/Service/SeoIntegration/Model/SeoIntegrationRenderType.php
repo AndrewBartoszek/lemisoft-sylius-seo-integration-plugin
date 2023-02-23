@@ -9,7 +9,7 @@ use MyCLabs\Enum\Enum;
 /**
  * @psalm-immutable
  *
- * @psalm-template Enum<string>
+ * @psalm-suppress MissingTemplateParam
  */
 class SeoIntegrationRenderType extends Enum
 {
