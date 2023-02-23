@@ -1,9 +1,9 @@
-lemisoft_boilerplate_shop:
+lemisoft_sylius_seo_integration_plugin_shop:
     resource: "@LemisoftSyliusSeoIntegrationPlugin/config/shop_routing.yml"
     prefix: /{_locale}
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 
-lemisoft_boilerplate_admin:
+lemisoft_sylius_seo_integration_plugin_admin:
     resource: "@LemisoftSyliusSeoIntegrationPlugin/config/admin_routing.yml"
     prefix: /admin
