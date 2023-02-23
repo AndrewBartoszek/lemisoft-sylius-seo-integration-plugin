@@ -8,12 +8,13 @@ use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegration;
 use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegrationInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
+/**
+ * @psalm-suppress MissingTemplateParam
+ */
 class SeoIntegrationFactory implements SeoIntegrationFactoryInterface
 {
     /**
      * @psalm-var class-string
-     *
-     * @psalm-suppress MissingTemplateParam
      */
     private string $className;
 
