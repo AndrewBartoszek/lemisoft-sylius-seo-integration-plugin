@@ -31,7 +31,7 @@ class SeoIntegrationController extends AbstractController
             throw new Exception('Kontroler wymaga przekazania templatki');
         }
 
-        if (!in_array($place, SeoIntegrationRenderType::toArray())) {
+        if (!in_array($place, SeoIntegrationRenderType::toArray(), true)) {
             return new Response('');
         }
 

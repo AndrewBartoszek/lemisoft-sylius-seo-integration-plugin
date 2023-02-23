@@ -64,7 +64,7 @@ class SeoIntegrationType extends AbstractResourceType
 
                     /** @var SeoIntegrationInterface $data */
                     $data = $event->getData();
-                    if (empty($data->getConfiguration())) {
+                    if ([] === $data->getConfiguration()) {
                         $data->setConfiguration([0 => []]);
                     }
                     $event->setData($data);

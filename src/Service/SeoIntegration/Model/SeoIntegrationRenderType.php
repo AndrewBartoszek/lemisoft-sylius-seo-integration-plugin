@@ -8,6 +8,8 @@ use MyCLabs\Enum\Enum;
 
 /**
  * @psalm-immutable
+ *
+ * @psalm-template T
  */
 class SeoIntegrationRenderType extends Enum
 {
