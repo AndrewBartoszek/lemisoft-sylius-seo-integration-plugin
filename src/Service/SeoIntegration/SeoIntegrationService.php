@@ -49,6 +49,7 @@ class SeoIntegrationService
     {
         $foundIntegrations = [];
         $allIntegrations = $this->getAllIntegrations();
+
         foreach ($allIntegrations as $integration) {
             if ($integration->getFirstPlace() === $place) {
                 $foundIntegrations[] = $integration;
