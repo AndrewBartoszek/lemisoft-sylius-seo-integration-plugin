@@ -26,7 +26,7 @@ Dla php należy włączyć następujące rozszerzenia:
 2. W pliku config/services.yaml dodać import:
     ```bash
     imports:
-        - { resource: "@LemisoftSyliusSeoIntegrationPlugin/config/services.yaml" }
+        - { resource: "@LemisoftSyliusSeoIntegrationPlugin/src/Resources/config/app/config.php" }
     ```
 
 3. W pliku config/routes.yaml dodać import:
@@ -89,23 +89,22 @@ Dodanie pliku z typem integracji:
 
 Dodanie typu integracji:
 ```bash
-#config/services/seo_integration_type.yaml
-    lemisoft.sylius_seo_integration_plugin.type.google_analytics:
-        class: Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\GoogleAnalyticsSeoIntegrationType
+#config/services/seo_integration_type.php
+    $services
+        ->set('lemisoft.sylius_seo_integration_plugin.type.google_analytics', GoogleAnalyticsSeoIntegrationType::class);
 ```
 
 Rejestracja typu integracji:
 ```bash
-#config/services/seo_integration_type.yaml
-    lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type:
-        class: Sylius\Component\Registry\ServiceRegistry
-        public: true
-        arguments:
-            - 'Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\SeoIntegrationTypeInterface'
-            - 'seo integration'
-        calls:
-            -   register: [ 'facebook', '@lemisoft.sylius_seo_integration_plugin.type.facebook' ]
-            -   register: [ 'google_analytics', '@lemisoft.sylius_seo_integration_plugin.type.google_analytics' ] #tylko ten wiersz dodajemy
+#config/services/seo_integration_type.php
+    $services
+        ->set('lemisoft.sylius_seo_integration_plugin.registry.seo-integration-type', ServiceRegistry::class)
+        ->public()
+        ->args([
+            SeoIntegrationTypeInterface::class,
+            'seo integration'
+        ])
+        ->call('register', ['google_analytics', service('lemisoft.sylius_seo_integration_plugin.type.google_analytics')])
 ```
 
 Dodanie szablonu z kodem skryptu integracji:

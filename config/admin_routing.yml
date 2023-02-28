@@ -1,8 +1,3 @@
-# Define your own admin routes here
-
-#sylius_admin_product_attribute:
-#        grid: sylius_admin_product_attribute
-#        alias: sylius.product_attribute
 lemisoft_admin_seo_integration:
     resource: |
         alias: lemisoft_sylius_seo_integration_plugin.seo_integration

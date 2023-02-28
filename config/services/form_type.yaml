@@ -1,9 +1,0 @@
-services:
-    lemisoft.sylius_seo_integration_plugin.form.seo_integration_type:
-        class: Lemisoft\SyliusSeoIntegrationPlugin\Form\SeoIntegrationType
-        arguments:
-            - '@lemisoft.sylius_seo_integration_plugin.service.seo_integration.seo_integration_service'
-            - '%lemisoft_sylius_seo_integration_plugin.model.seo_integration.class%'
-            - [ 'Default', 'sylius' ]
-        tags:
-            - { name: form.type }
