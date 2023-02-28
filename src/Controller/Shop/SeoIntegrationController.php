@@ -31,11 +31,13 @@ class SeoIntegrationController extends AbstractController
             throw new Exception('Kontroler wymaga przekazania templatki');
         }
 
-        if (!in_array($place, SeoIntegrationRenderType::toArray(), true)) {
+        $placeAsEnum = SeoIntegrationRenderType::tryFrom($place);
+
+        if (null === $placeAsEnum) {
             return new Response('');
         }
 
-        $integrations = $this->seoIntegrationService->findIntegrations($place);
+        $integrations = $this->seoIntegrationService->findIntegrations($placeAsEnum);
 
         $scripts = [];
         foreach ($integrations as $integration) {

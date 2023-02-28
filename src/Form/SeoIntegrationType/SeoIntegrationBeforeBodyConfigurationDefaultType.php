@@ -33,7 +33,7 @@ class SeoIntegrationBeforeBodyConfigurationDefaultType extends AbstractType
             ->addEventListener(FormEvents::PRE_SUBMIT, static function (FormEvent $event): void {
                 /** @var array $data */
                 $data = $event->getData();
-                $data['place'] = SeoIntegrationRenderType::BODY_BEFORE_BODY;
+                $data['place'] = SeoIntegrationRenderType::BODY_BEFORE_BODY->value;
 
                 $event->setData($data);
             });

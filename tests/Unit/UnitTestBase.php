@@ -49,7 +49,7 @@ class UnitTestBase extends KernelTestCase
         $this->facebookSeoIntegration->setConfiguration([
             [
                 'code'  => self::FACEBOOK_INTEGRATION_CODE,
-                'place' => self::FACEBOOK_INTEGRATION_PLACE,
+                'place' => self::FACEBOOK_INTEGRATION_PLACE->value,
             ],
         ]);
         $this->googleSeoIntegration = new SeoIntegration();
@@ -57,7 +57,7 @@ class UnitTestBase extends KernelTestCase
         $this->googleSeoIntegration->setConfiguration([
             [
                 'code'  => self::GOOGLE_INTEGRATION_CODE,
-                'place' => self::GOOGLE_INTEGRATION_PLACE,
+                'place' => self::GOOGLE_INTEGRATION_PLACE->value,
             ],
         ]);
     }

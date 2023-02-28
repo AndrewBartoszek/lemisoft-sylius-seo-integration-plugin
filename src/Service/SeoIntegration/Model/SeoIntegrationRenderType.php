@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model;
 
-use MyCLabs\Enum\Enum;
-
-/**
- * @psalm-immutable
- *
- * @psalm-suppress MissingTemplateParam
- */
-class SeoIntegrationRenderType extends Enum
+enum SeoIntegrationRenderType: string
 {
-    public const HEAD = 'head';
-    public const BODY_BEFORE_BODY = 'body-before-body';
-    public const BODY_AFTER_BODY = 'body-after-body';
+    case HEAD = 'head';
+    case BODY_BEFORE_BODY = 'body-before-body';
+    case BODY_AFTER_BODY = 'body-after-body';
+
+    /**
+     * @return string[]
+     */
+    public static function toArray(): array
+    {
+        return array_map(
+            static fn (SeoIntegrationRenderType $enum) => $enum->value,
+            SeoIntegrationRenderType::cases(),
+        );
+    }
 }

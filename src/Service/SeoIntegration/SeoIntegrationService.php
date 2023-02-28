@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration;
 
 use Lemisoft\SyliusSeoIntegrationPlugin\Entity\Seo\SeoIntegrationInterface;
+use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationRenderType;
 use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\SeoIntegrationTypeInterface;
 use Sylius\Component\Registry\ServiceRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -45,13 +46,13 @@ class SeoIntegrationService
     /**
      * @return SeoIntegrationInterface[]
      */
-    public function findIntegrations(string $place): array
+    public function findIntegrations(SeoIntegrationRenderType $place): array
     {
         $foundIntegrations = [];
         $allIntegrations = $this->getAllIntegrations();
 
         foreach ($allIntegrations as $integration) {
-            if ($integration->getFirstPlace() === $place) {
+            if ($integration->getFirstPlace() === $place->value) {
                 $foundIntegrations[] = $integration;
             }
         }
