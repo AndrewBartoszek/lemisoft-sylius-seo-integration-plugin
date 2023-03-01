@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Lemisoft\SyliusSeoIntegrationPlugin\Service\SeoIntegration\Model\SeoIntegrationType\FacebookPixelSeoIntegrationType;
@@ -16,7 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator) {
         ->public()
         ->args([
             SeoIntegrationTypeInterface::class,
-            'seo integration'
+            'seo integration',
         ])
         ->call('register', ['facebook', service('lemisoft.sylius_seo_integration_plugin.type.facebook')])
         ->call('register', ['google_analytics', service('lemisoft.sylius_seo_integration_plugin.type.google_analytics')])
